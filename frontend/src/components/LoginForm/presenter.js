@@ -39,7 +39,7 @@ const LoginForm = (props, context) => (
   </div>
 );
 
-LoginForm.propTYpes = {
+LoginForm.propTypes = {
   usernameValue: PropTypes.string.isRequired,
   passwordValue: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
