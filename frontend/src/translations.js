@@ -1,5 +1,35 @@
 export const translations = {
-  es: {
-    'Login in': 'Iniciar Session ',
+  'es': {
+    'Checkout our app. Is cool': 'Ya tiene una cuenta?',
+    'Logo': 'Inicial sesson',
+    'Don\'t have an account? ': '',
+    'Sign up': '',
+    'Have an account? ': '',
+    'Log in': '',
+    'Get the app': '',
+    'Download it on the Apple Appstore': '',
+    'Download it on the Android Market': '',
+    'Username': 'Usuario',
+    'Password': '',
+    'or': '',
+    'Log in with Facebook': '',
+    'Forgot password?': '',
+    'Sign up to see photos and videos from your friends.': '',
+    'Email': '',
+    'Full Name': '',
+    'By signing up, you agree to our ': '',
+    'Terms & Privacy Policy': '',
+    'About Us': '',
+    'Support': '',
+    'Blog': '',
+    'Press': '',
+    'API': '',
+    'Job': '',
+    'Privacy': '',
+    'Terms': '',
+    'Directory': '',
+    'Language': '',
   },
-};
+  'options': {
+  },
+}
