@@ -26,7 +26,6 @@ class Container extends Component {
 
   _handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
   };
 }
 
