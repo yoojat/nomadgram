@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Ionicon from 'react-ionicons';
 import formStyles from 'shared/formStyles.scss';
 import FacebookLogin from 'react-facebook-login';
 
@@ -20,6 +19,7 @@ const SignupForm = (props, context) => (
       callback={props.handleFacebookLogin}
       cssClass={formStyles.facebookSingupLogin}
       icon="fa fa-facebook-official"
+      textButton={context.t('Login in with Facebook')}
     />
     <span className={formStyles.divider}>or</span>
     <form className={formStyles.form}>
