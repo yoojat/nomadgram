@@ -1,5 +1,5 @@
 """
-Base settings for Nomadgram project.
+Django settings for nomadgram project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/dev/topics/settings/
@@ -40,7 +40,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 
     # Useful template tags:
-    # 'django.contrib.humanize',
+    'django.contrib.humanize',
 
     # Admin
     'django.contrib.admin',
@@ -48,17 +48,15 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
-    'allauth.socialaccount',  # registration
-    # django-allauth를 검색해서 들어가면 많은 provider들이 있음
-    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',  # registration
     'rest_framework',  # REST framework
     'rest_framework.authtoken',
     'taggit',  # Tags for the photos
     'taggit_serializer',  # tag serializer
     'rest_auth',  # rest auth
     'rest_auth.registration',  # enable registration
-    'corsheaders'  # To accept requests from React
-
+    'corsheaders',  # To accept requests from React
 ]
 
 # Apps specific for this project go here.
@@ -113,7 +111,7 @@ EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND',
 # ------------------------------------------------------------------------------
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [
-    ("""Nomad Coders""", 'yooja.ty@gmail.com'),
+    ("""Nomad Coders""", 'nico@nomadcoders.co'),
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#managers
@@ -188,9 +186,6 @@ TEMPLATES = [
         },
     },
 ]
-
-# See: http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -277,7 +272,6 @@ SOCIALACCOUNT_ADAPTER = 'nomadgram.users.adapters.SocialAccountAdapter'
 # Custom user app defaults
 # Select the correct user model
 AUTH_USER_MODEL = 'users.User'
-LOGIN_URL = 'account_login'
 
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
@@ -288,9 +282,7 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
-
 TAGGIT_CASE_INSENSITIVE = True
-
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -304,8 +296,44 @@ REST_FRAMEWORK = {
 
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
+SOCIALACCOUNT_QUERY_EMAIL = True
 CORS_ORIGIN_ALLOW_ALL = True
 
 JWT_AUTH = {
     'JWT_VERIFY_EXPIRATION': False
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': [
+            'email',
+            'public_profile',
+            'user_friends'
+        ],
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+            'picture'
+        ],
+        'AUTH_PARAMS': {
+            #'auth_type': 'reauthenticate'
+        },
+        'METHOD': 'oauth2',
+        #'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': True,
+        'VERSION': 'v2.4'
+    }
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'nomadgram.users.serializers.SignUpSerializer'
 }
