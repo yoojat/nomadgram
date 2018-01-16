@@ -5,20 +5,21 @@ import SignupForm from './presenter';
 class Container extends Component {
   state = {
     email: '',
-    fullname: '',
+    name: '',
     username: '',
     password: '',
   };
 
   static propTypes = {
     facebookLogin: PropTypes.func.isRequired,
+    createAccount: PropTypes.func.isRequired,
   };
   render() {
-    const {username, password, email, fullname} = this.state;
+    const {username, password, email, name} = this.state;
     return (
       <SignupForm
         emailValue={email}
-        fullnameValue={fullname}
+        nameValue={name}
         usernameValue={username}
         passwordValue={password}
         handleInputChange={this._handleInputChange}
@@ -36,7 +37,10 @@ class Container extends Component {
   };
 
   _handleSubmit = event => {
+    const {email, name, password, username} = this.state;
+    const {createAccount} = this.props;
     event.preventDefault();
+    createAccount(username, password, email, name);
   };
 
   _handleFacebookLogin = response => {
